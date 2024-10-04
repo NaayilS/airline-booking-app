@@ -35,7 +35,8 @@ const getFlightOffers = async (origin, destination, date) => {
         destinationLocationCode: destination,
         departureDate: date,
         adults: 1,
-        max: 5
+        max: 5,
+        currencyCode: 'USD'
       },
       headers: {
         Authorization: `Bearer ${accessToken}`
