@@ -54,12 +54,7 @@ const FlightCard = ({ flight, onFlightSelect }) => {
         <p>From: {firstSegment.departure.iataCode} at {formatDateTime(firstSegment.departure.at)}</p>
         <p>To: {lastSegment.arrival.iataCode} at {formatDateTime(lastSegment.arrival.at)}</p>
         <p className="price">Price: {price.total} {price.currency}</p>
-        <motion.button
-          whileTap={{ scale: 0.95 }}  // Button press-down effect
-          onClick={handleBooking}      // Add the click handler for booking
-        >
-          Book Flight
-        </motion.button>
+        <button onClick={() => navigate('/passenger-info')}>Book Flight</button>
       </div>
     </motion.div>
   );
