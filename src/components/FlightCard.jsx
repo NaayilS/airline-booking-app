@@ -6,13 +6,18 @@ const FlightCard = ({ flight }) => {
   const lastSegment = itineraries[0].segments[itineraries[0].segments.length - 1];
 
   return (
-    <div className="card mb-3">
+    <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{firstSegment.carrierCode} - Flight {firstSegment.number}</h5>
-        <p className="card-text">From: {firstSegment.departure.iataCode} at {firstSegment.departure.at}</p>
-        <p className="card-text">To: {lastSegment.arrival.iataCode} at {lastSegment.arrival.at}</p>
-        <p className="card-text">Price: {price.total} {price.currency}</p>
-        <button className="btn btn-primary">Book Flight</button>
+        <img 
+          src="https://mpng.hippopng.com/20180406/tie/kisspng-airplane-aircraft-maintenance-flight-transport-aeroplane-5ac7b14f05e3e0.1254718215230364950241.jpg" 
+          alt="Airplane Icon" 
+          className="airplane-icon" 
+        />
+        <h5>{firstSegment.carrierCode} - Flight {firstSegment.number}</h5>
+        <p>From: {firstSegment.departure.iataCode} at {firstSegment.departure.at}</p>
+        <p>To: {lastSegment.arrival.iataCode} at {lastSegment.arrival.at}</p>
+        <p className="price">Price: {price.total} {price.currency}</p>
+        <button>Book Flight</button>
       </div>
     </div>
   );
