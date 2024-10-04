@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Function to format the date and time
@@ -10,10 +11,20 @@ const formatDateTime = (isoString) => {
   }).format(date);
 };
 
-const FlightCard = ({ flight }) => {
+const FlightCard = ({ flight, onFlightSelect }) => {
+  const navigate = useNavigate();
+  
+  const handleBooking = () => {
+    // Call the function to store the selected flight
+    onFlightSelect(flight);
+    // Navigate to the passenger information step
+    navigate('/passenger-info');
+  };
+
   const { itineraries, price } = flight;
   const firstSegment = itineraries[0].segments[0];
   const lastSegment = itineraries[0].segments[itineraries[0].segments.length - 1];
+
   // Animation variants for flight cards with easing
   const cardVariants = {
     hidden: { opacity: 0, x: -100 },
@@ -23,7 +34,6 @@ const FlightCard = ({ flight }) => {
       transition: { duration: 0.6, ease: "easeOut" }
     }
   };
-
 
   return (
     <motion.div
@@ -46,6 +56,7 @@ const FlightCard = ({ flight }) => {
         <p className="price">Price: {price.total} {price.currency}</p>
         <motion.button
           whileTap={{ scale: 0.95 }}  // Button press-down effect
+          onClick={handleBooking}      // Add the click handler for booking
         >
           Book Flight
         </motion.button>

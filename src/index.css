@@ -100,3 +100,86 @@ button:hover {
   color: var(--accent-color);
   margin-top: 10px;
 }
+
+.seat-selection {
+  text-align: center;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.seat {
+  width: 60px;
+  height: 60px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  background-color: #fff;
+}
+
+.seat.available {
+  background-color: #4caf50; /* Green for available */
+  color: white;
+}
+
+.seat.selected {
+  background-color: #ff9800; /* Orange for selected */
+  color: white;
+}
+
+.seat.unavailable {
+  background-color: #f44336; /* Red for unavailable */
+  color: white;
+  cursor: not-allowed;
+}
+
+.seat-info {
+  margin-top: 20px;
+}
+
+/* Payment Step */
+.payment-step {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.payment-step .form-group {
+  margin-bottom: 20px;
+}
+
+.payment-step label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.payment-step input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Confirmation */
+.booking-step {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.booking-step p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.booking-step button {
+  margin-top: 20px;
+}

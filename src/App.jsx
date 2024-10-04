@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import FlightSearchForm from './components/FlightSearchForm';
-import FlightList from './components/FlightList';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './AppRoutes';  // Import the new AppRoutes component
 import { getFlightOffers } from './services/amadeusAPI';
 
-function App() {
-  const [flights, setFlights] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
+function App() {
+  const [flights, setFlights] = useState([]);  // Flight search results
+  const [loading, setLoading] = useState(false);  // Loading state
+  const [error, setError] = useState(null);  // Error state
+  const [selectedFlight, setSelectedFlight] = useState(null);  // Selected flight for booking
+  const [bookingData, setBookingData] = useState({
+    passengerName: '',
+    seatNumber: '',
+    cardNumber: ''
+  });
+
+  // Handle the flight search functionality
   const handleSearch = async (searchQuery) => {
     setLoading(true);
     setError(null);
@@ -21,15 +29,27 @@ function App() {
     }
   };
 
+  // Handle flight selection
+  const handleFlightSelect = (flight) => {
+    setSelectedFlight(flight);
+  };
   return (
-    <div className="container">
-      <h1 className="my-4">Airline Booking App</h1>
-      <FlightSearchForm onSearch={handleSearch} />
-      {loading && <p>Loading flights...</p>}
-      {error && <p>{error}</p>}
-      {!loading && !error && <FlightList flights={flights} />}
-    </div>
-  );
+    <Router>
+      <div className="container">
+        <h1 className="my-4">Airline Booking App</h1>
+        {/* AppRoutes component to handle all routes */}
+        <AppRoutes 
+          flights={flights}
+          handleSearch={handleSearch}
+          handleFlightSelect={handleFlightSelect}
+          bookingData={bookingData}
+          setBookingData={setBookingData}
+          loading={loading}
+          error={error}
+        />
+      </div>
+    </Router>
+   );
 }
 
 export default App;
